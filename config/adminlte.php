@@ -335,6 +335,35 @@ return [
             
         ],
 
+        [
+            'text'        => 'Puestos',
+            'route'         => 'admin.puestos.index',
+            'icon'        => 'fas fa-user-tie',
+          
+            'can'    => 'Leer usuarios',
+            'active'  => ['admin/users*']
+            
+        ],
+
+        [
+            'text'        => 'Sedes',
+            'route'         => 'admin.sedes.index',
+            'icon'        => 'fas fa-door-closed',
+            'can'    => 'Leer usuarios',
+            'active'  => ['admin/users*']
+            
+        ],
+
+        [
+            'text'        => 'Areas',
+            'route'         => 'admin.areas.index',
+            'icon'        => 'fas fa-layer-group',
+         
+            'can'    => 'Leer usuarios',
+            'active'  => ['admin/users*']
+            
+        ],
+
 
 
         ['header' => 'account_settings'],

@@ -14,6 +14,10 @@
                         <th>id</th>
                         <th>Nombre</th>
                         <th>Email</th>
+                        <th>Sede</th>
+                        <th>Area</th>
+                        <th>Puesto</th>
+                        
                         <th></th>
                     </tr>
 
@@ -27,6 +31,9 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
+                            <td>{{ $user->sede }}</td>
+                            <td>{{ $user->area }}</td>
+                            <td>{{ $user->puesto }}</td>
                             <td width="10px">
                                 <a class="btn btn-primary" href="{{ route('admin.users.edit',$user) }}">Editar</a>
                             </td>

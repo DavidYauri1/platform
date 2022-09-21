@@ -109,27 +109,7 @@
                 </div>
             </section>
 
-            <aside class="hidden lg:block">
-                @foreach ($similares as $similar )
-                        <article class="flex mb-6 ">
-                            <img class="h-32 w-40 object-cover" src="{{ Storage::url($similar->image->url) }}" alt="">
-                            <div class="ml-3">
-                                <h1>
-                                    <a class="font-bold text-gray-500 mb-3" href="{{ route('courses.status',$similar) }}">{{ Str::limit($similar->title,40)}}</a>
-                                </h1>
-
-                                <div class="flex items-center mb-2">
-                                    <img class="h-8 w-8 object-cover rounded-full shadow-lg" src="{{ $similar->teacher->profile_photo_url }}" alt="">
-                                    <p class="text-gray-700 text-sm ml-2">{{ $similar->teacher->name }}</p>
-                                </div>
-                                <p class="text-sm">
-                                    <i class="fas fa-star mr-2 text-yellow-400">{{ $similar->rating }}</i>
-                                </p>
-
-                            </div>
-                        </article>
-                @endforeach
-            </aside>
+         
 
         </div>
 

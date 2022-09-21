@@ -25,7 +25,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        <x-jet-application-mark class="w-2 h-1" />
                     </a>
                 </div>
 
