@@ -4,10 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:Leer usuarios')->only('index');
+        $this->middleware('can:Editar usuarios')->only('edit','update');
+        
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -58,7 +68,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.create', compact('user'));
+        $roles = Role::all();
+        return view('admin.users.edit', compact('user','roles'));
     }
 
     /**
@@ -68,9 +79,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->roles()->sync($request->roles);
+
+        return redirect()->route('admin.users.edit',$user);
     }
 
     /**
