@@ -226,6 +226,14 @@
                     {{ __('Profile') }}
                 </x-jet-responsive-nav-link>
 
+                @can('Leer cursos')
+                <x-jet-responsive-nav-link href="{{ route('instructor.courses.index') }}" :active="request()->routeIs('profile.show')">
+                    {{ __('Instructor') }}
+                </x-jet-responsive-nav-link>
+                @endcan
+
+               
+
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
                         {{ __('API Tokens') }}
