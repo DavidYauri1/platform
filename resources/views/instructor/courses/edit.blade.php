@@ -38,7 +38,7 @@
 
         <x-slot name="js">
             <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
-            
+            <script src="js/instructor/courses/"></script>            
             <script>
                           document.getElementById("title").addEventListener('keyup', slugChange);
 

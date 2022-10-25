@@ -52,6 +52,8 @@ class CourseController extends Controller
             'category_id' => 'required',
             'level_id' => 'required',
             'price_id' => 'required',
+            'file' => 'image'
+
 
         ]);
 
@@ -59,7 +61,7 @@ class CourseController extends Controller
        // return redirect()->route('instructor.courses.edit',$course);
 
        if($request->file('file')){
-           $url =  Storage::put('courses',$request->file('file'));
+           $url =  Storage::put('public/courses',$request->file('file'));
         $course->image()->create([
             'url' => $url
         ]);
@@ -105,16 +107,35 @@ class CourseController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'slug' => 'required|unique:courses,slug' . $course->id, 
+            'slug' => 'required|unique:courses,slug,' . $course->id, 
             'subtitle' => 'required',
             'description' => 'required',
             'category_id' => 'required',
             'level_id' => 'required',
             'price_id' => 'required',
+            'file' => 'image'
 
         ]);
 
-        return "Paso validacion";
+       $course->update($request->all());
+        if($request->file('file')){
+            $url = Storage::put('public/courses',$request->file('file'));
+            if($course->image){
+                Storage::delete($course->image->url);
+                $course->image->update([
+                    'url' => $url
+                ]);
+            }else{
+                $course->image()->create([
+                    'url' => $url
+                ]);
+            }
+        }
+
+
+
+        return redirect()->route('instructor.courses.edit',compact('course')); 
+       
     }
 
     /**
