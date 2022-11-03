@@ -28,21 +28,41 @@
             <div class="container py-8 grid grid-cols-5">
                 <aside>
                     <h1>Edicion del curso</h1>
-                    <ul class="text-sm text-gray-600">
-                        <li class="leading-7 mb-1 border-l-4 border-indigo-400  @routeIs('instructor.courses.edit',$course) border-indigo-400 @else border-transparent @endif pl-2 ">
-                            <a href="{{ route('instructor.courses.edit',$course) }}" class="font-bold text-lg mb-4">informacion del curso</a>
+                    <ul class="text-sm text-gray-600 mb-4">
+                        <li class="leading-7 mb-1 border-l-4  @routeIs('instructor.courses.edit',$course) border-indigo-400 @else border-transparent @endif pl-2 ">
+                            <a href="{{ route('instructor.courses.edit',$course) }}" >Informacion del curso</a>
                         </li>
                         <li class="leading-7 mb-1 border-l-4 @routeIs('instructor.courses.curriculum',$course) border-indigo-400 @else border-transparent @endif pl-2">
                             <a href="{{ route('instructor.courses.curriculum',$course) }}">Lecciones</a>
                         </li>
-                        <li class="leading-7 mb-1 border-l-4  border-transparent pl-2">
-                            <a href="">Metas del curso</a>
+                        <li class="leading-7 mb-1 border-l-4  @routeIs('instructor.courses.goals',$course) border-indigo-400 @else border-transparent @endif pl-2">
+                            <a href="{{ route('instructor.courses.goals',$course) }}">Metas del curso</a>
                         </li>
                         <li class="leading-7 mb-1 border-l-4  border-transparent pl-2">
-                            <a href="">Estudiantes</a>
+                            <a href="{{ route('instructor.courses.students',$course) }}">Estudiantes</a>
                         </li>
                     </ul>
+
+                    
+                <form action="{{    route('instructor.courses.status',$course) }}" method="POST">
+                    @csrf
+                    <button class="btn btn-danger" type="submit">Solicitar Revision</button>
+
+
+                </form>
+
+
+
+
                 </aside>
+
+
+
+
+
+
+
+
                 
                 <main class="col-span-4 card"> 
                     <div class="card-body text-gray-600 ">

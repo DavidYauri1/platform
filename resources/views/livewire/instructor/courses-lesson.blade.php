@@ -5,7 +5,7 @@
         <article class="card mt-4">
             <div class="card-body">
                 @if ($lesson->id  == $item->id)
-                   <div>
+                   <form wire:submit.prevent="update">
                         <div class="flex items-center">
                             <label class="w-32">Nombre:</label>
                             <input class="form-input w-full" wire:model="lesson.name">
@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="flex items-center mt-4  ">
-                            <label class="w-32">ULR:</label>
+                            <label class="w-32">URl:</label>
                             <input wire:model="lesson.url" class="form-input w-full">
                         </div>
 
@@ -36,10 +36,10 @@
                         @enderror
 
                         <div class="mt-4 flex justify-end">
-                            <button class="btn btn-danger" wire:click="cancel   ">Cancelar</button>
-                            <button class="btn btn-primary ml-2" wire:click="update">Actualizar</button>
+                            <button type="button" class="btn btn-danger" wire:click="cancel   ">Cancelar</button>
+                            <button type="submit" class="btn btn-primary ml-2" >Actualizar</button>
                         </div>
-                   </div>
+                   </form>
                 @else
                 <header>
                     <h1><i class="far fa-play-circle text-blue-500 mr-1"></i>Lección:{{ $item->name }}</h1>
@@ -49,9 +49,13 @@
                     <p class="text-sm">Plataforma:{{ $item->platform->name }}</p>
                     <p class="text-sm"><a class="text-blue-600" href="{{ $item->url }}" target="_blank">{{ $item->url }}</a></p>
                 
-                    <div class="mt-2">
+                    <div class="my-2">
                         <button class="btn btn-primary text-sm" wire:click="edit({{ $item }})">Editar</button>
-                        <button class="btn btn-danger text-sm">Elminar</button>
+                        <button class="btn btn-danger text-sm" wire:click="destroy({{ $item }})">Elminar</button>
+                    </div>
+
+                    <div>
+                        @livewire('instructor.lesson-description',['lesson' => $item], key('lesson-description-' .$item->id))
                     </div>
 
                 </div>
@@ -74,11 +78,41 @@
 
         <article class="card"x-show="open"> 
             <div class="card-body ">
-                <h1 class="text-xl font-blod mb-4">Agreagr nueva Seccion</h1>
+                <h1 class="text-xl font-blod mb-4">Agreagr nueva Leccion</h1>
             <div class="mb-4">
-                <input wire:model="name" class="form-input w-full" placeholder="Escriba el nombre de la seccion">
+                <div class="flex items-center">
+                    <label class="w-32">Nombre:</label>
+                    <input class="form-input w-full" wire:model="name">
+                </div>
+
                 @error('name')
                     <span class="text-xs text-red-500">{{ $message }}</span>
+
+                @enderror
+
+                <div class="flex items-center mt-4">
+                    <label for="" class="w-32">Plataforma</label>
+                    <select wire:model="platform_id">
+                        @foreach ($platforms as $platform )
+                            <option value="{{ $platform->id }}">{{ $platform->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                @error('platform_id')
+                <span class="text-xs text-red-500">{{ $message }}</span>
+
+                 @enderror
+
+
+                <div class="flex items-center mt-4  ">
+                    <label class="w-32">URl:</label>
+                    <input wire:model="url" class="form-input w-full">
+                </div>
+
+                @error('url')
+                <span class="text-xs text-red-500">{{ $message }}</span>
+
                 @enderror
 
             </div>

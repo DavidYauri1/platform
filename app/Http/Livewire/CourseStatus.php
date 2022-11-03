@@ -107,5 +107,10 @@ class CourseStatus extends Component
         return round($advance,2);
     }
 
+    public function getPorce(){
+        $aa =$this->advance;
+        return $aa;
+    }
+
 
 }

@@ -18,7 +18,7 @@ class LessonFactory extends Factory
     {
         return [
             'name' => $this->faker->sentence(),
-            'url' => 'https://www.youtube.com/watch?v=0zuqzGxqeL4&ab_channel=WorldVisionColombia',
+            'url' => 'https://youtu.be/0zuqzGxqeL4',
             'iframe' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/0zuqzGxqeL4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
             'platform_id' => 1
         ];
