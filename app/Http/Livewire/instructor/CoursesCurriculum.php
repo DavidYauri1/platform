@@ -11,9 +11,12 @@ class CoursesCurriculum extends Component
 
 
 {
-    public $course , $section ,$name;
 
     use AuthorizesRequests;
+
+    public $course , $section ,$name;
+
+    
 
     protected $rules = [
         'section.name' => 'required'
@@ -23,7 +26,7 @@ class CoursesCurriculum extends Component
         $this->course = $course;
         $this->section = new Section();
 
-        $this->authorize('dicatated',$course);
+     $this->authorize('dicatated',$course);
 
 
 

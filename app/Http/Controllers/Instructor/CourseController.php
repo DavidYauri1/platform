@@ -67,6 +67,7 @@ class CourseController extends Controller
 
         ]);
 
+      
        $course = Course::create($request->all());
        // return redirect()->route('instructor.courses.edit',$course);
 

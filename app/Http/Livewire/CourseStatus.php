@@ -16,8 +16,10 @@ class CourseStatus extends Component
 
     public $course;
     public $current;
-    
-    
+    public $test;
+
+
+
 
 
     public function mount(Course $course){
@@ -32,7 +34,7 @@ class CourseStatus extends Component
             }
         }
 
-    
+
         if(!$this->current){
          $this->current =  $course->lessons->last();
         }
@@ -76,13 +78,13 @@ class CourseStatus extends Component
         if($this->index == 0){
             return null;
         }else {
-            
+
             return $this->course->lessons[$this->index - 1];
         }
     }
 
     public function getNextProperty(){
-            
+
         if($this->index == $this->course->lessons->count()-1 ){
             return null;
         }else {
@@ -93,7 +95,7 @@ class CourseStatus extends Component
     }
 
     public function getAdvanceProperty(){
-            
+
         $i = 0;
 
         foreach ($this->course->lessons as $lesson) {
@@ -104,13 +106,34 @@ class CourseStatus extends Component
 
         $advance = ($i*100)/($this->course->lessons->count());
 
+
         return round($advance,2);
     }
 
-    public function getPorce(){
-        $aa =$this->advance;
-        return $aa;
+    public function getAdvancePropertyA(){
+        $i = 0;
+
+        foreach ($this->course->lessons as $lesson) {
+            if($lesson->completed){
+                $i++;
+            }
+        }
+
+        $advance = ($i*100)/($this->course->lessons->count());
+
+
+        $new =  round($advance,2);
+
+       if ($new == 100) {
+            return true;
+       } else {
+        return false;
+       }
+
     }
+
+
+
 
 
 }

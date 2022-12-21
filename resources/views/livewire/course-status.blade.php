@@ -4,16 +4,16 @@
            <div class="embed-responsive">
             {!!$current->iframe!!}
            </div>
-            
+
            <h1 class="text-3xl text-gray-600 font-bold mt-4">
                {{ $current->name }}
            </h1>
            @if ($current->description)
-            
+
            <div class="text-gray-600">
            {{ $current->description->name }}
             </div>
-               
+
             @endif
 
             <div class="flex items-center mt-4 cursor-pointer " wire:click="completed">
@@ -27,13 +27,13 @@
 
             <div class="card">
                <div class="card-body flex text-gray-500 font-bold">
-                 
+
                   @if ($this->previous)
                      <a wire:click="changeLesson({{ $this->previous }})" class="cursor-pointer">Tema anterior</a>
                   @endif
 
                   @if ($this->next)
-                      
+
                   <a wire:click="changeLesson({{ $this->next }})" class="ml-auto cursor-pointer">Siguiente Tema</a>
                   @endif
                </div>
@@ -64,7 +64,7 @@
                   </div>
 
                </div>
-
+               <h1>{{ $this->test }}</h1>
                <p class="text-gray-600 text-sm mt-2">{{ $this->advance .'%' }} completado</p>
                <div class="relative pt-1">
                   <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-pink-200">
@@ -98,15 +98,22 @@
                                     </div>
 
                                     <a class="cursor-pointer" wire:click="changeLesson({{ $lesson }})" >{{ $lesson->name }}
-                                          
+
                                        </li>
                                  @endforeach
                         </ul>
                       </li>
                   @endforeach
                </ul>
+               <div>
 
-                  
+                @if ($this->advance == 100)
+                   <a class="px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out text-center">Ralizar examen</a>
+                @else
+                   <h2 class="font-medium leading-tight  text-red-500 text-lg">Complete los videos para realizar el examen</h2>
+                @endif
+               </div>
+
             </div>
 
          </div>
